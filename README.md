@@ -13,7 +13,7 @@ flowchart LR
   CF -.-> L["S3 logs bucket"];
   L --> ATH[Athena];
   CF --> ACM["ACM cert"];
-```
+
 
 flowchart TB
   %% Buckets + lifecycles (self-edges pontilhados apenas ilustrativos)
@@ -25,7 +25,7 @@ flowchart TB
   R --> V1["View: cf_logs_view"];
   V1 --> V2["View: cf_logs_view_friendly"];
   V2 --> C["CTAS: cf_logs_curated\n(Parquet + partitions)"];
-
+```
 
 cloudfront-logs-analytics/
 ├─ README.md
