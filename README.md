@@ -10,20 +10,22 @@ Converto os logs brutos em uma **tabela curated em Parquet particionado (ano/mê
 flowchart LR
   U[User] --> CF[CloudFront (OAC)]
   CF --> S3[S3 bucket privado]
-  CF -. logs .-> L[S3 logs bucket]
+  CF -.-> L[S3 logs bucket]
   L --> ATH[Athena]
   CF --> ACM[ACM cert]
+
 ---
 flowchart TB
-  %% Buckets e lifecycles
-  B[S3: AWSLogs/CloudFront] -.->|Lifecycle: 90d → Glacier IR; 365d → Expire| B
-  G[S3: athena-results/]   -.->|Expire: 14d| G
+  %% Buckets + lifecycles (self-edges pontilhados só para ilustrar)
+  B[S3: AWSLogs/CloudFront] -.-> B
+  G[S3: athena-results/]   -.-> G
 
-  %% Tabelas e views no Athena
+  %% Tabelas/views no Athena
   B --> R[(Athena: cf_logs_raw)]
   R --> V1[[View: cf_logs_view]]
   V1 --> V2[[View: cf_logs_view_friendly]]
-  V2 --> C[(CTAS: cf_logs_curated<br/>format=PARQUET, partitions=year/month/day/hour)]
+  V2 --> C[(CTAS: cf_logs_curated<br/>Parquet + partitions)]
+
 cloudfront-logs-analytics/
 ├─ README.md
 ├─ sql/
