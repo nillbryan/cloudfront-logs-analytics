@@ -14,6 +14,7 @@ flowchart LR
   L --> ATH[Athena];
   CF --> ACM["ACM cert"];
 ```
+
 flowchart TB
   %% Buckets + lifecycles (self-edges pontilhados apenas ilustrativos)
   B["S3: AWSLogs/CloudFront"] -.-> B;
