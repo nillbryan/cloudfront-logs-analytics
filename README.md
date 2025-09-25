@@ -27,6 +27,7 @@ flowchart TB
   V2 --> C["CTAS: cf_logs_curated\n(Parquet + partitions)"];
 ```
 
+```text
 cloudfront-logs-analytics/
 ├─ README.md
 ├─ sql/
@@ -40,9 +41,10 @@ cloudfront-logs-analytics/
 │  ├─ 13_traffic_by_hour.sql
 │  └─ 14_top_user_agents.sql
 ├─ scripts/
-│  └─ create-workgroup-cli.sh   (opcional)
-└─ docs/                        (opcional se usar imagens)
+│  └─ create-workgroup-cli.sh  (opcional)
+└─ docs/                       (opcional se usar imagens)
    ├─ architecture.png
    ├─ lifecycle-cf-logs.png
    ├─ lifecycle-athena-results.png
    └─ athena-saved-queries.png
+```
