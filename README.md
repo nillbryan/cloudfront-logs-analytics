@@ -8,23 +8,23 @@ Converto os logs brutos em uma **tabela curated em Parquet particionado (ano/mê
 ## Arquitetura (Mermaid)
 ```mermaid
 flowchart LR
-  U[User] --> CF[CloudFront (OAC)]
-  CF --> S3[S3 bucket privado]
-  CF -.-> L[S3 logs bucket]
-  L --> ATH[Athena]
-  CF --> ACM[ACM cert]
-
+  U[User] --> CF["CloudFront OAC"];
+  CF --> S3["S3 bucket privado"];
+  CF -.-> L["S3 logs bucket"];
+  L --> ATH[Athena];
+  CF --> ACM["ACM cert"];
 
 flowchart TB
-  %% Buckets + lifecycles (self-edges pontilhados só para ilustrar)
-  B[S3: AWSLogs/CloudFront] -.-> B
-  G[S3: athena-results/]   -.-> G
+  %% Buckets + lifecycles (self-edges pontilhados apenas ilustrativos)
+  B["S3: AWSLogs/CloudFront"] -.-> B;
+  G["S3: athena-results/"] -.-> G;
 
   %% Tabelas/views no Athena
-  B --> R[(Athena: cf_logs_raw)]
-  R --> V1[[View: cf_logs_view]]
-  V1 --> V2[[View: cf_logs_view_friendly]]
-  V2 --> C[(CTAS: cf_logs_curated<br/>Parquet + partitions)]
+  B --> R["Athena: cf_logs_raw"];
+  R --> V1["View: cf_logs_view"];
+  V1 --> V2["View: cf_logs_view_friendly"];
+  V2 --> C["CTAS: cf_logs_curated\n(Parquet + partitions)"];
+
 
 cloudfront-logs-analytics/
 ├─ README.md
