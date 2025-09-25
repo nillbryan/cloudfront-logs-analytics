@@ -13,6 +13,7 @@ flowchart LR
   CF -. logs .-> L[S3 logs bucket]
   L --> ATH[Athena]
   CF --> ACM[ACM cert]
+---
 flowchart TB
   %% Buckets e lifecycles
   B[S3: AWSLogs/CloudFront] -.->|Lifecycle: 90d → Glacier IR; 365d → Expire| B
