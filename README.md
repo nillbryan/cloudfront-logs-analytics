@@ -10,6 +10,21 @@ Os logs brutos são convertidos em uma **tabela “curated” em Parquet partici
 ### Pipeline (tabelas e views no Athena)
 
 ```mermaid
+flowchart LR
+  %% Gráfico 1 - Alto nível
+  U[User]
+  CF[CloudFront (OAC)]
+  S3P[S3 bucket privado]
+  S3L[S3 logs bucket]
+  ATH[Athena]
+  ACM[ACM cert]
+
+  U --> CF
+  CF --> S3P
+  CF -. logs .-> S3L
+  S3L --> ATH
+  CF --> ACM
+
 flowchart TB
   %% Buckets e lifecycles (pontilhado só para ilustrar retenção)
   B[S3: AWSLogs/CloudFront] -. lifecycle 90d → Glacier IR<br/>365d → Expire .- B
