@@ -14,7 +14,7 @@ flowchart LR
   L --> ATH[Athena]
   CF --> ACM[ACM cert]
 
----
+
 flowchart TB
   %% Buckets + lifecycles (self-edges pontilhados só para ilustrar)
   B[S3: AWSLogs/CloudFront] -.-> B
