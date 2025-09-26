@@ -47,7 +47,7 @@ cloudfront-logs-analytics/
 │  └─ 14_top_user_agents.sql
 ├─ scripts/
 │  └─ create-workgroup-cli.sh  (opcional)
-└─ docs/                       (opcional se usar imagens)
+└─ docs/  (opcional se usar imagens)
    ├─ architecture.png
    ├─ lifecycle-cf-logs.png
    ├─ lifecycle-athena-results.png
@@ -59,15 +59,15 @@ Ative Standard Logging apontando para um bucket privado em S3.
 
 Athena (workgroup com saída centralizada em s3://…/athena-results/):
 
-Crie a tabela raw: sql/00_ddl_cf_logs_raw.sql
+Tabela raw: sql/00_ddl_cf_logs_raw.sql
 
-Crie as views:
+Views:
 
 sql/01_view_cf_logs_view.sql
 
 sql/02_view_cf_logs_view_friendly.sql
 
-Gere a tabela curated Parquet (CTAS):
+CTAS (tabela curated em Parquet):
 
 sql/03_ctas_cf_logs_curated_parquet.sql
 
@@ -108,6 +108,6 @@ Próximos passos
 
 Habilitar Partition Projection na cf_logs_raw.
 
-Construir um painel no Amazon QuickSight (erros/dia, top URIs, picos).
+Painel no Amazon QuickSight (erros/dia, top URIs, picos).
 
-Scriptar a criação do Workgroup em scripts/create-workgroup-cli.sh.
+Scriptar a criação do Workgroup: scripts/create-workgroup-cli.sh
