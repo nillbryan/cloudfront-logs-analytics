@@ -8,7 +8,7 @@ Os logs brutos são convertidos em uma **tabela “curated” em Parquet partici
 ## Arquitetura (Mermaid)
 
 ### 1) Alto nível
-```mermaid
+
 flowchart LR
   %% Gráfico 1 - Alto nível
   U[User]
