@@ -23,7 +23,6 @@ flowchart LR
   CF -. logs .-> S3L
   S3L --> ATH
   CF --> ACM
-
 flowchart TB
   %% Buckets e lifecycles (pontilhado só para ilustrar retenção)
   B[S3: AWSLogs/CloudFront] -. lifecycle 90d → Glacier IR<br/>365d → Expire .- B
@@ -34,8 +33,6 @@ flowchart TB
   R --> V1[[View: cf_logs_view]]
   V1 --> V2[[View: cf_logs_view_friendly]]
   V2 --> C[(CTAS: cf_logs_curated<br/>Parquet + partitions)]
-```
-
 cloudfront-logs-analytics/
 ├─ README.md
 ├─ sql/
@@ -55,7 +52,6 @@ cloudfront-logs-analytics/
    ├─ lifecycle-cf-logs.png
    ├─ lifecycle-athena-results.png
    └─ athena-saved-queries.png
-
 Como reproduzir
 
 CloudFront
@@ -108,8 +104,10 @@ Workgroup com “Centralized output” + CTAS com external_location
 Se o workgroup estiver com enforce centralized output, não use WITH ( external_location=… ) no CTAS.
 Deixe o Athena gravar no destino padrão do workgroup.
 
+Próximos passos
 
-Se ainda aparecer erro de renderização:
-- confira se **cada bloco** começa com ```mermaid e termina com ``` (sem espaços),
-- e se **não** há texto colado dentro do mesmo bloco dos gráficos.
-::contentReference[oaicite:0]{index=0}
+Habilitar Partition Projection na cf_logs_raw.
+
+Construir um painel no Amazon QuickSight (erros/dia, top URIs, picos).
+
+Scriptar a criação do Workgroup em scripts/create-workgroup-cli.sh.
