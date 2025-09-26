@@ -34,6 +34,8 @@ flowchart TB
   R --> V1[[View: cf_logs_view]]
   V1 --> V2[[View: cf_logs_view_friendly]]
   V2 --> C[(CTAS: cf_logs_curated<br/>Parquet + partitions)]
+```
+
 cloudfront-logs-analytics/
 ├─ README.md
 ├─ sql/
