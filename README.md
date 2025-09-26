@@ -23,6 +23,7 @@ flowchart LR
   CF -. logs .-> S3L
   S3L --> ATH
   CF --> ACM
+
 flowchart TB
   %% Buckets e lifecycles (pontilhado só para ilustrar retenção)
   B[S3: AWSLogs/CloudFront] -. lifecycle 90d → Glacier IR<br/>365d → Expire .- B
@@ -52,6 +53,7 @@ cloudfront-logs-analytics/
    ├─ lifecycle-cf-logs.png
    ├─ lifecycle-athena-results.png
    └─ athena-saved-queries.png
+
 Como reproduzir
 
 CloudFront
@@ -105,7 +107,7 @@ Se o workgroup estiver com enforce centralized output, não use WITH ( external_
 Deixe o Athena gravar no destino padrão do workgroup.
 
 
-> Observações:
-> - **Não misture** dois gráficos no mesmo bloco. No arquivo acima, cada `mermaid` está isolado.
-> - Caso o preview do Mermaid não apareça, recarregue a página do GitHub (às vezes ele demora para renderizar).
+Se ainda aparecer erro de renderização:
+- confira se **cada bloco** começa com ```mermaid e termina com ``` (sem espaços),
+- e se **não** há texto colado dentro do mesmo bloco dos gráficos.
 ::contentReference[oaicite:0]{index=0}
